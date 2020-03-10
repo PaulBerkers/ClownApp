@@ -8,7 +8,8 @@
         Title="MainWindow" Height="460" Width="800">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0.5*"/>
+            <ColumnDefinition />
+            <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
@@ -27,8 +28,13 @@
             <TextBox x:Name="Description"></TextBox>
             <Button Background="Red" Height="25" Content="Clown toevoegen" Margin="0,10,0,0" Click="Button_Click"></Button>
         </StackPanel>
-        <StackPanel Margin="10,0,0,0"  Grid.Column="1" x:Name="lvClowns">
-            
+        <ScrollViewer Grid.Column="2">
+            <StackPanel  Grid.Column="2" x:Name="lvClowns">
+
+            </StackPanel>
+        </ScrollViewer>
+        <StackPanel Margin="10,0,0,0"  Grid.Column="1" x:Name="lvFoto">
+
         </StackPanel>
     </Grid>
 </Window>

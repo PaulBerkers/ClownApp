@@ -49,6 +49,7 @@ namespace Clown
             try
             {
                 lvClowns.Children.Clear();
+                lvFoto.Children.Clear();
 
                 SqlConnection conn = new SqlConnection(@"Data Source=(localdb)\mssqllocaldb; 
                                             Initial Catalog=Clowns;Integrated Security=True");
@@ -64,25 +65,26 @@ namespace Clown
                 dtData.Load(reader);
 
                 foreach (DataRow row in dtData.Rows)
-                {
+                { 
                     StackPanel sp = new StackPanel();
+                    sp.Margin = new Thickness(10);
 
                     Image imPhoto = new Image();
-                    imPhoto.Width = 100;
-                    imPhoto.Height = 100;
-                    imPhoto.HorizontalAlignment = 0;
+                    imPhoto.Width = 80;
+                    imPhoto.Height = 80;
+                    imPhoto.HorizontalAlignment = HorizontalAlignment.Right;
 
                     TextBlock tblName = new TextBlock();
-                    tblName.Text += row["Name"].ToString();
+                    tblName.Text += "Naam:                       " + row["Name"].ToString();
 
                     TextBlock tblLastName = new TextBlock();
-                    tblLastName.Text += row["LastName"].ToString();
+                    tblLastName.Text += "Achternaam:             " + row["LastName"].ToString();
 
                     TextBlock tblAge = new TextBlock();
-                    tblAge.Text += row["Age"].ToString();
+                    tblAge.Text += "Leeftijd:                    " + row["Age"].ToString();
 
                     TextBlock tblDescription = new TextBlock();
-                    tblDescription.Text += row["Description"].ToString();
+                    tblDescription.Text += "Omschrijving:           " + row["Description"].ToString();
 
                     try
                     {
@@ -100,14 +102,20 @@ namespace Clown
                     }
 
                     catch { }
+                    lvFoto.Children.Add(imPhoto);
 
-                    sp.Children.Add(imPhoto);
                     sp.Children.Add(tblName);
                     sp.Children.Add(tblLastName);
                     sp.Children.Add(tblAge);
                     sp.Children.Add(tblDescription);
 
-                    lvClowns.Children.Add(sp);
+
+                    Border b = new Border();
+                    b.BorderBrush = Brushes.Black;
+                    b.BorderThickness = new Thickness(0.5);
+                    b.Child = sp;
+
+                    lvClowns.Children.Add(b);
 
                 }
 
